@@ -1,38 +1,8 @@
-extends CharacterBody2D
-class_name Player
+class_name Player extends CharacterBody2D
 
-@export var gravity = 350
-@export var speed = 100
-var jump_force = 60
+var speed = 100
+var gravity = 350
+var jump = 60
 
-func _physics_process(delta):
-	if is_on_floor() == false:
-		velocity.y += gravity * delta
-		
-	if Input.is_action_just_pressed("ui_accept") && is_on_floor():
-		jump(jump_force)
-		
-	if velocity.y >= 500:
-		velocity.y = 500
-	var direction = Input.get_axis("ui_left", "ui_right")
-	if direction != 0:
-		$Sprite2D.flip_h = (direction == -1)
-	velocity.x = direction  * speed 
+func _physics_process(_delta: float) -> void:
 	move_and_slide()
-	#update_animations(direction)
-	
-func jump(force):
-	velocity.y = -force
-	
-	
-func update_animations(direction):
-	if is_on_floor():
-		if direction == 0:
-			$AnimatedSprite2D.play("idle")
-		else:
-			$AnimatedSprite2D.play("run")
-	else:
-		if velocity.y < 0:
-			$AnimatedSprite2D.play("jump")
-		else:
-			$AnimatedSprite2D.play("fall")

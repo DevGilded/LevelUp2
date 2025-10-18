@@ -1,11 +1,37 @@
-[gd_scene load_steps=4 format=3 uid="uid://ckw3myl8113v7"]
+[gd_scene load_steps=15 format=3 uid="uid://ckw3myl8113v7"]
 
 [ext_resource type="Script" uid="uid://cy1thjy6vwbox" path="res://entities/player/player.gd" id="1_abrql"]
 [ext_resource type="Texture2D" uid="uid://clynomnbg8gup" path="res://entities/player/model1.png" id="1_symyc"]
+[ext_resource type="Script" uid="uid://e04s1ihmrq80" path="res://entities/player/states/state_machine.gd" id="3_sglur"]
+[ext_resource type="Script" uid="uid://3x5y4xm5xrv0" path="res://entities/player/states/idle.gd" id="4_fkugw"]
+[ext_resource type="Script" uid="uid://dnih2pvdyc1jw" path="res://entities/state.gd" id="5_8fjmc"]
+[ext_resource type="Script" uid="uid://b826fjst64bfc" path="res://entities/player/states/walk.gd" id="6_8fjmc"]
+[ext_resource type="Script" uid="uid://bl5hyqyjrsn2o" path="res://entities/player/states/fall.gd" id="7_qiwj3"]
+[ext_resource type="Script" uid="uid://duq5fnalcvcjs" path="res://entities/player/states/jump.gd" id="8_26q78"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_abrql"]
 radius = 7.0
 height = 28.0
+
+[sub_resource type="Resource" id="Resource_qiwj3"]
+script = ExtResource("4_fkugw")
+metadata/_custom_type_script = "uid://3x5y4xm5xrv0"
+
+[sub_resource type="Resource" id="Resource_26q78"]
+script = ExtResource("4_fkugw")
+metadata/_custom_type_script = "uid://3x5y4xm5xrv0"
+
+[sub_resource type="Resource" id="Resource_bectd"]
+script = ExtResource("6_8fjmc")
+metadata/_custom_type_script = "uid://b826fjst64bfc"
+
+[sub_resource type="Resource" id="Resource_wvtmh"]
+script = ExtResource("7_qiwj3")
+metadata/_custom_type_script = "uid://bl5hyqyjrsn2o"
+
+[sub_resource type="Resource" id="Resource_7thud"]
+script = ExtResource("8_26q78")
+metadata/_custom_type_script = "uid://duq5fnalcvcjs"
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_abrql")
@@ -16,3 +42,14 @@ texture = ExtResource("1_symyc")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 2)
 shape = SubResource("CapsuleShape2D_abrql")
+
+[node name="State Machine" type="Node" parent="." node_paths=PackedStringArray("agent")]
+script = ExtResource("3_sglur")
+agent = NodePath("..")
+initial_state = SubResource("Resource_qiwj3")
+States = Dictionary[String, ExtResource("5_8fjmc")]({
+"Fall": SubResource("Resource_wvtmh"),
+"Idle": SubResource("Resource_26q78"),
+"Jump": SubResource("Resource_7thud"),
+"Walk": SubResource("Resource_bectd")
+})
