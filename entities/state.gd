@@ -5,7 +5,7 @@ signal Transitioned
 
 var agent: PhysicsBody2D
 
-func Enter(body: PhysicsBody2D) -> void:
+func Enter(body: PhysicsBody2D, ...args) -> void:
 	agent = body
 
 func Exit() -> void:

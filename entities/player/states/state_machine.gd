@@ -20,7 +20,7 @@ func _physics_process(delta: float) -> void:
 	if current_state:
 		current_state.Physics_Update(delta)
 
-func on_state_transition(state, new_state_name):
+func on_state_transition(state, new_state_name, ...args):
 	if state != current_state:
 		return
 	
@@ -31,7 +31,7 @@ func on_state_transition(state, new_state_name):
 	if current_state:
 		current_state.Exit()
 	
-	new_state.Enter(agent)
+	new_state.Enter(agent, args)
 	if !new_state.Transitioned.is_connected(on_state_transition):
 		new_state.Transitioned.connect(on_state_transition)
 	
