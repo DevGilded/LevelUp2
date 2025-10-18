@@ -39,6 +39,7 @@ script = ExtResource("9_bectd")
 metadata/_custom_type_script = "uid://iltkf72np6ml"
 
 [node name="Player" type="CharacterBody2D"]
+collision_mask = 17
 script = ExtResource("1_abrql")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

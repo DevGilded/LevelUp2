@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://pbmuevem7k1x"]
+
+[ext_resource type="Texture2D" uid="uid://bqdhwm8jcrn8p" path="res://assets/textures/ladder_model_1.png" id="1_3ffiq"]
+[ext_resource type="Script" uid="uid://b1mfwum87yhb7" path="res://props/ladder.gd" id="1_rnidm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3ffiq"]
+size = Vector2(16, 56)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rnidm"]
+size = Vector2(16, 8)
+
+[node name="Ladder" type="Node2D" node_paths=PackedStringArray("UpTheLadder", "DownTheLadder")]
+script = ExtResource("1_rnidm")
+UpTheLadder = NodePath("AnchorUp")
+DownTheLadder = NodePath("AnchorDow")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 24)
+texture = ExtResource("1_3ffiq")
+
+[node name="Up" type="Area2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Up"]
+position = Vector2(0, 28)
+shape = SubResource("RectangleShape2D_3ffiq")
+
+[node name="Down" type="Area2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Down"]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_rnidm")
+
+[node name="AnchorUp" type="Node2D" parent="."]
+position = Vector2(0, -8)
+
+[node name="AnchorDow" type="Node2D" parent="."]
+position = Vector2(0, 48)
+
+[connection signal="body_entered" from="Up" to="." method="_on_ladder_down"]
+[connection signal="body_exited" from="Up" to="." method="_on_ladder_down_leave"]
+[connection signal="body_entered" from="Down" to="." method="_on_ladder_up"]
+[connection signal="body_exited" from="Down" to="." method="_on_ladder_up_leave"]
