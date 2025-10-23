@@ -11,24 +11,20 @@
 [ext_resource type="Script" uid="uid://iltkf72np6ml" path="res://entities/player/states/land.gd" id="9_bectd"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_abrql"]
-radius = 7.0
-height = 28.0
+radius = 5.0
+height = 12.0
 
 [sub_resource type="Resource" id="Resource_qiwj3"]
 script = ExtResource("4_fkugw")
 metadata/_custom_type_script = "uid://3x5y4xm5xrv0"
 
-[sub_resource type="Resource" id="Resource_26q78"]
-script = ExtResource("4_fkugw")
-metadata/_custom_type_script = "uid://3x5y4xm5xrv0"
-
-[sub_resource type="Resource" id="Resource_bectd"]
-script = ExtResource("6_8fjmc")
-metadata/_custom_type_script = "uid://b826fjst64bfc"
-
 [sub_resource type="Resource" id="Resource_wvtmh"]
 script = ExtResource("7_qiwj3")
 metadata/_custom_type_script = "uid://bl5hyqyjrsn2o"
+
+[sub_resource type="Resource" id="Resource_26q78"]
+script = ExtResource("4_fkugw")
+metadata/_custom_type_script = "uid://3x5y4xm5xrv0"
 
 [sub_resource type="Resource" id="Resource_7thud"]
 script = ExtResource("8_26q78")
@@ -38,15 +34,19 @@ metadata/_custom_type_script = "uid://duq5fnalcvcjs"
 script = ExtResource("9_bectd")
 metadata/_custom_type_script = "uid://iltkf72np6ml"
 
+[sub_resource type="Resource" id="Resource_bectd"]
+script = ExtResource("6_8fjmc")
+metadata/_custom_type_script = "uid://b826fjst64bfc"
+
 [node name="Player" type="CharacterBody2D"]
-collision_mask = 17
+collision_mask = 6
 script = ExtResource("1_abrql")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_symyc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 2)
+position = Vector2(0, 10)
 shape = SubResource("CapsuleShape2D_abrql")
 
 [node name="State Machine" type="Node" parent="." node_paths=PackedStringArray("agent")]

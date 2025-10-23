@@ -10,7 +10,7 @@ func Physics_Update(delta: float) -> void:
 			agent.velocity.x = 0
 			return
 		
-		var direction = Input.get_axis('ui_left', 'ui_right')
+		var direction = Input.get_axis('LEFT', 'RIGHT')
 		agent.velocity.x = direction * (agent.speed * 0.5)
 		agent.velocity.y += agent.gravity * delta
 		fall_height += agent.gravity * delta
