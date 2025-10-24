@@ -5,6 +5,7 @@ func Physics_Update(_delta: float) -> void:
 		if !agent.is_on_floor():
 			Transitioned.emit(self, "Fall")
 	
+	agent.sprite.play('default')
 	if Input.is_action_pressed('UP'):
 		Transitioned.emit(self, "Jump")
 	

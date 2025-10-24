@@ -9,7 +9,7 @@ func Enter(body: PhysicsBody2D, ...args) -> void:
 	
 	agent.add_child(timer)
 	
-	timer.wait_time = 0.25 if args.get(0).get(0).get('height') < 150 else 0.50
+	timer.wait_time = 0.15 if args.get(0).get(0).get('height') < 150 else 0.40
 	timer.one_shot = true
 	timer.timeout.connect(_on_recover)
 	

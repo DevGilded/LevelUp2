@@ -27,6 +27,7 @@ func on_state_transition(state, new_state_name, ...args):
 	var new_state: State = States.get(new_state_name)
 	if !new_state:
 		return
+	agent.label.text = new_state_name
 	
 	if current_state:
 		current_state.Exit()

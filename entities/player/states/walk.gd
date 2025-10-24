@@ -8,6 +8,7 @@ func Physics_Update(_delta: float) -> void:
 	else:
 		agent.sprite.flip_h = true if direction == -1 else false
 	
+	agent.sprite.play('run')
 	if agent is CharacterBody2D:
 		agent.velocity.x = direction * agent.speed
 		

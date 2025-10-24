@@ -1,7 +1,7 @@
-[gd_scene load_steps=17 format=3 uid="uid://ckw3myl8113v7"]
+[gd_scene load_steps=22 format=3 uid="uid://ckw3myl8113v7"]
 
 [ext_resource type="Script" uid="uid://cy1thjy6vwbox" path="res://entities/player/player.gd" id="1_abrql"]
-[ext_resource type="Texture2D" uid="uid://clynomnbg8gup" path="res://entities/player/model1.png" id="1_symyc"]
+[ext_resource type="Texture2D" uid="uid://cc4vh42actyoq" path="res://entities/player/model4.png" id="2_bectd"]
 [ext_resource type="Script" uid="uid://e04s1ihmrq80" path="res://entities/player/states/state_machine.gd" id="3_sglur"]
 [ext_resource type="Script" uid="uid://3x5y4xm5xrv0" path="res://entities/player/states/idle.gd" id="4_fkugw"]
 [ext_resource type="Script" uid="uid://dnih2pvdyc1jw" path="res://entities/state.gd" id="5_8fjmc"]
@@ -9,10 +9,14 @@
 [ext_resource type="Script" uid="uid://bl5hyqyjrsn2o" path="res://entities/player/states/fall.gd" id="7_qiwj3"]
 [ext_resource type="Script" uid="uid://duq5fnalcvcjs" path="res://entities/player/states/jump.gd" id="8_26q78"]
 [ext_resource type="Script" uid="uid://iltkf72np6ml" path="res://entities/player/states/land.gd" id="9_bectd"]
+[ext_resource type="Texture2D" uid="uid://10ft1faqhvn3" path="res://entities/player/running_frame/model4-f1.png" id="10_j3ovn"]
+[ext_resource type="Texture2D" uid="uid://clh8imow7ft6v" path="res://entities/player/running_frame/model4-f2.png" id="11_afbqv"]
+[ext_resource type="Texture2D" uid="uid://dc5itjbeqpcwh" path="res://entities/player/running_frame/model4-f3.png" id="12_gx6sm"]
+[ext_resource type="Texture2D" uid="uid://ckeub5j6s5atf" path="res://entities/player/running_frame/model4-f4.png" id="13_yqrof"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_abrql"]
-radius = 5.0
-height = 12.0
+radius = 6.0
+height = 22.0
 
 [sub_resource type="Resource" id="Resource_qiwj3"]
 script = ExtResource("4_fkugw")
@@ -38,15 +42,44 @@ metadata/_custom_type_script = "uid://iltkf72np6ml"
 script = ExtResource("6_8fjmc")
 metadata/_custom_type_script = "uid://b826fjst64bfc"
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_3wlsy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_bectd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 0.75,
+"texture": ExtResource("10_j3ovn")
+}, {
+"duration": 0.75,
+"texture": ExtResource("11_afbqv")
+}, {
+"duration": 0.75,
+"texture": ExtResource("12_gx6sm")
+}, {
+"duration": 0.75,
+"texture": ExtResource("13_yqrof")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
+
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 6
 script = ExtResource("1_abrql")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_symyc")
+visible = false
+texture = ExtResource("2_bectd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 10)
+position = Vector2(0, 5)
 shape = SubResource("CapsuleShape2D_abrql")
 
 [node name="State Machine" type="Node" parent="." node_paths=PackedStringArray("agent")]
@@ -60,3 +93,17 @@ States = Dictionary[String, ExtResource("5_8fjmc")]({
 "Land": SubResource("Resource_a1qjk"),
 "Walk": SubResource("Resource_bectd")
 })
+
+[node name="Label" type="Label" parent="."]
+offset_left = -13.499997
+offset_top = -14.0
+offset_right = 251.49994
+offset_bottom = 74.0
+scale = Vector2(0.1, 0.1)
+theme_override_font_sizes/font_size = 64
+text = "state"
+horizontal_alignment = 1
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_3wlsy")
+frame_progress = 0.86489594
