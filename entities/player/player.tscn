@@ -14,10 +14,6 @@
 [ext_resource type="Texture2D" uid="uid://dc5itjbeqpcwh" path="res://entities/player/running_frame/model4-f3.png" id="12_gx6sm"]
 [ext_resource type="Texture2D" uid="uid://ckeub5j6s5atf" path="res://entities/player/running_frame/model4-f4.png" id="13_yqrof"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_abrql"]
-radius = 6.0
-height = 22.0
-
 [sub_resource type="Resource" id="Resource_qiwj3"]
 script = ExtResource("4_fkugw")
 metadata/_custom_type_script = "uid://3x5y4xm5xrv0"
@@ -70,6 +66,10 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_abrql"]
+radius = 4.0
+height = 20.0
+
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 6
 script = ExtResource("1_abrql")
@@ -77,10 +77,6 @@ script = ExtResource("1_abrql")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
 texture = ExtResource("2_bectd")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 5)
-shape = SubResource("CapsuleShape2D_abrql")
 
 [node name="State Machine" type="Node" parent="." node_paths=PackedStringArray("agent")]
 script = ExtResource("3_sglur")
@@ -106,4 +102,8 @@ horizontal_alignment = 1
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_3wlsy")
-frame_progress = 0.86489594
+frame_progress = 0.84959894
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 5.95)
+shape = SubResource("CapsuleShape2D_abrql")

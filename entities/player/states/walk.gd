@@ -1,6 +1,9 @@
 class_name PlayerWalk extends State
 
 func Physics_Update(_delta: float) -> void:
+	if !agent.is_on_floor():
+		Transitioned.emit(self, "Fall")
+	
 	var direction = Input.get_axis('LEFT', 'RIGHT')
 	
 	if !direction:
@@ -11,7 +14,6 @@ func Physics_Update(_delta: float) -> void:
 	agent.sprite.play('run')
 	if agent is CharacterBody2D:
 		agent.velocity.x = direction * agent.speed
-		
 		
 	if Input.is_action_pressed('UP'):
 		Transitioned.emit(self, "Jump")
