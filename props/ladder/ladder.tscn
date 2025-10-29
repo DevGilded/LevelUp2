@@ -1,13 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://pbmuevem7k1x"]
+[gd_scene load_steps=6 format=3 uid="uid://pbmuevem7k1x"]
 
-[ext_resource type="Texture2D" uid="uid://bqdhwm8jcrn8p" path="res://props/ladder/ladder_model_1.png" id="1_3ffiq"]
 [ext_resource type="Script" uid="uid://b1mfwum87yhb7" path="res://props/ladder/ladder.gd" id="1_rnidm"]
+[ext_resource type="Texture2D" uid="uid://bguwn644ktp7m" path="res://props/ladder/model1_1-3.png" id="2_biddi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3ffiq"]
-size = Vector2(16, 56)
+size = Vector2(34, 56)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rnidm"]
 size = Vector2(16, 8)
+
+[sub_resource type="Curve2D" id="Curve2D_sm0pa"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -14, 0, 0, 0, 0, 0, 14, -56)
+}
+point_count = 2
 
 [node name="Ladder" type="Node2D" node_paths=PackedStringArray("UpTheLadder", "DownTheLadder")]
 script = ExtResource("1_rnidm")
@@ -15,17 +21,19 @@ UpTheLadder = NodePath("AnchorUp")
 DownTheLadder = NodePath("AnchorDow")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, 24)
-texture = ExtResource("1_3ffiq")
+position = Vector2(0, -32)
+texture = ExtResource("2_biddi")
 
 [node name="Up" type="Area2D" parent="."]
+visible = false
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Up"]
-position = Vector2(0, 28)
+position = Vector2(0, -28)
 shape = SubResource("RectangleShape2D_3ffiq")
 
 [node name="Down" type="Area2D" parent="."]
+visible = false
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Down"]
@@ -37,6 +45,18 @@ position = Vector2(0, -8)
 
 [node name="AnchorDow" type="Node2D" parent="."]
 position = Vector2(0, 48)
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_sm0pa")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(-14, 0)
+rotation = -1.1071488
+loop = false
+
+[node name="Node2D" type="Node2D" parent="Path2D/PathFollow2D"]
+position = Vector2(15, -5)
+rotation = 1.3962634
 
 [connection signal="body_entered" from="Up" to="." method="_on_ladder_down"]
 [connection signal="body_exited" from="Up" to="." method="_on_ladder_down_leave"]

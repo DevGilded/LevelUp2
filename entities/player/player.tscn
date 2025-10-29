@@ -1,6 +1,7 @@
-[gd_scene load_steps=22 format=3 uid="uid://ckw3myl8113v7"]
+[gd_scene load_steps=23 format=3 uid="uid://ckw3myl8113v7"]
 
 [ext_resource type="Script" uid="uid://cy1thjy6vwbox" path="res://entities/player/player.gd" id="1_abrql"]
+[ext_resource type="Texture2D" uid="uid://kpu5h47plc16" path="res://entities/player/model5.png" id="2_afbqv"]
 [ext_resource type="Texture2D" uid="uid://cc4vh42actyoq" path="res://entities/player/model4.png" id="2_bectd"]
 [ext_resource type="Script" uid="uid://e04s1ihmrq80" path="res://entities/player/states/state_machine.gd" id="3_sglur"]
 [ext_resource type="Script" uid="uid://3x5y4xm5xrv0" path="res://entities/player/states/idle.gd" id="4_fkugw"]
@@ -67,16 +68,15 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_abrql"]
-radius = 4.0
+radius = 6.0
 height = 20.0
 
 [node name="Player" type="CharacterBody2D"]
-collision_mask = 6
+collision_mask = 14
 script = ExtResource("1_abrql")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-visible = false
-texture = ExtResource("2_bectd")
+texture = ExtResource("2_afbqv")
 
 [node name="State Machine" type="Node" parent="." node_paths=PackedStringArray("agent")]
 script = ExtResource("3_sglur")
@@ -101,9 +101,10 @@ text = "state"
 horizontal_alignment = 1
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
 sprite_frames = SubResource("SpriteFrames_3wlsy")
 frame_progress = 0.84959894
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 5.95)
+position = Vector2(0, 6)
 shape = SubResource("CapsuleShape2D_abrql")
