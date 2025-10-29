@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://csvsx028l3hit"]
+
+[ext_resource type="Texture2D" uid="uid://bx4s73tletgic" path="res://props/debris/model1.png" id="1_labqq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_frol2"]
+size = Vector2(32, 48)
+
+[node name="debris" type="StaticBody2D"]
+collision_layer = 8
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -24)
+texture = ExtResource("1_labqq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -24)
+shape = SubResource("RectangleShape2D_frol2")
