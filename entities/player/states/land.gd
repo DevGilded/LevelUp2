@@ -15,9 +15,6 @@ func Enter(body: PhysicsBody2D, ...args) -> void:
 	
 	timer.start()
 
-#func Physics_Update(_delta: float) -> void:
-	#agent.velocity.x = 0
-
 func _on_recover():
 	agent.remove_child(timer)
 	Transitioned.emit(self, 'Idle')
