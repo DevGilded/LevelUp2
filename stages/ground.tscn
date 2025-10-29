@@ -254,7 +254,7 @@ sources/2 = SubResource("TileSetAtlasSource_l7ut1")
 
 [node name="Player" parent="." instance=ExtResource("1_oaglo")]
 z_index = 1
-position = Vector2(148, 135)
+position = Vector2(149, 152)
 metadata/_edit_group_ = true
 
 [node name="Camera2D" type="Camera2D" parent="Player"]

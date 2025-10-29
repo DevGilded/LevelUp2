@@ -22,7 +22,7 @@ func _input(_event: InputEvent) -> void:
 		if Input.is_action_pressed("DOWN"):
 			path.progress_ratio = clamp(path.progress_ratio - 0.01, 0.0, 1.0)
 
-		_node.global_position = path.global_position - Vector2(0, 15)
+		_node.global_position = path.global_position - Vector2(5, 2)
 	
 	if Input.is_action_just_pressed("ui_accept") and _can_climb_up:
 		if !is_climbing:
@@ -50,7 +50,7 @@ func get_progress_from_position(pos: Vector2) -> float:
 		return 0.0
 
 	# Get the closest distance (offset in pixels) along the path
-	var offset = curve.get_closest_offset($Path2D.to_local(pos)) - 15
+	var offset = curve.get_closest_offset($Path2D.to_local(pos))
 	
 	# Convert to progress_ratio (0.0 - 1.0)
 	var total_length = curve.get_baked_length()
